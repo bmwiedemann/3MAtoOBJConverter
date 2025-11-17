@@ -10,24 +10,22 @@ Created on Sat Aug 19 19:04:09 2023
 HOW TO USE:
     
     1. Find a way to put your 3ma file in a device that can run python
-    2. Change the file type of your 3ma file to json
-    3. Specify the filepath+filename of your 3ma file on line 23 of this python script (filepaths require double forward slashes \\)
-    4. Specify the filepath+filename of your obj file on line 29 of this python script. Make sure you include the .obj file extension
-    5. Run this script (takes about 1 sec or less. If it took 5 secs or more let me know and let me see your 3d model!)
+    2. Run this script with the filename as first parameter (takes about 1 sec or less. If it took 5 secs or more let me know and let me see your 3d model!)
+    3. output is written to an .obj file next to it
     6. ENJOY!
 
 """
 
 import json
+import sys
 
-# change the file type of the 3ma file to json and load it as json
-filename_3ma = "C:\\filepath\\filename.json"
+filename_3ma = sys.argv[1]
 
 file_3ma = open(filename_3ma)
 
 fjile_3ma = json.loads(file_3ma.read())
 
-fout = open("C:\\filepath\\filename.obj","wt")
+fout = open(filename_3ma + ".obj","wt")
 
 vertex_index = 0
 prev_vertex_index = vertex_index
@@ -64,35 +62,3 @@ for msh in range(mesh_num):
 
 file_3ma.close()
 fout.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
